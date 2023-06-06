@@ -1,0 +1,16 @@
+name: Cronjob
+
+on:
+  schedule:
+    - cron: '0 22 * * *'  # Menjalankan pada pukul 05.00 UTC+7
+
+jobs:
+  run_cronjob:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Timezone
+        run: sudo timedatectl set-timezone Asia/Jakarta
+
+      - name: Run Cronjob
+        run: curl -sS ${{ secrets.CRONJOB_URL }}
